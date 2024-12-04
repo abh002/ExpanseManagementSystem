@@ -1,54 +1,56 @@
 package com.example.expensemanager.model;
-import lombok.Getter;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.Set;
 
-/**
- * Represents a User entity stored in MongoDB.
- */
-@Getter
-@Document(collection = "users") // Links this class to the MongoDB "users" collection
+@Document(collection = "users")
 public class User{
 
-    // Getters and Setters for accessing fields
-    @Id // Unique identifier for MongoDB
+    @Id
     private String id;
+    private String username;
+    private String email;
+    private String password;
 
-    private String name; // User's name
-    private String email; // User's email
-    private String password; // User's password (hashed for security)
-    private Set<String> roles; // Roles (e.g., USER, ADMIN)
-
-    // Default constructor (required by Spring Data)
+    // Constructors
     public User() {}
 
-    // Constructor with fields
-    public User(String id, String name, String email, String password, Set<String> roles) {
-        this.id = id;
-        this.name = name;
+    public User(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+    }
+
+    // Getters and Setters
+    public String getId() {
+        return id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
